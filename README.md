@@ -105,6 +105,73 @@ The system combines **human knowledge + real-world outcomes**:
 - Reduced manual intervention  
 - Transparent and controllable learning system  
 
+## 📊 Example Data for Tables
+
+---
+
+## 🧠 Table: airflow_feed.error_kb
+
+| id | service | error_text | normalized_error | suggested_action | root_cause | source |
+|----|--------|-----------|------------------|------------------|-----------|--------|
+| 1 | spark | FetchFailedException: Failed to fetch shuffle blocks | fetchfailedexception failed to fetch shuffle blocks | RERUN | Shuffle fetch failed due to executor or network issue | human |
+| 2 | dbt | Database Error: column not found | database error column not found | NO_RERUN | Incorrect column reference | human |
+| 3 | s3 | 503 Slow Down | slow down | RERUN | S3 rate limiting | human |
+| 4 | postgres | deadlock detected | deadlock detected | RERUN | Concurrent transaction conflict | auto |
+| 5 | airflow | Task timed out | task timed out | RERUN | Execution timeout | auto |
+
+> Note: `embedding` column is omitted here for readability (stores vector values).
+
+---
+
+## ⚙️ Table: airflow_feed.pipeline_signals
+
+| id | signal_type | dag_id | task_id | error | ai_action | user_confirmation | rerun_status | confidence_score | run_status |
+|----|------------|--------|---------|-------|-----------|-------------------|--------------|------------------|-----------|
+| 1 | failure | spark_etl_dag | load_data | FetchFailedException | RERUN | approved | fixed on rerun | 92.5 | success |
+| 2 | failure | dbt_model_dag | transform | column not found | NO_RERUN | pending | NULL | 45.0 | failed |
+| 3 | failure | s3_ingest_dag | download | 503 Slow Down | RERUN | approved | failed | 78.0 | failed |
+| 4 | failure | airflow_monitor | check_status | Task timed out | RERUN | cleared | processing | 85.0 | NULL |
+| 5 | failure | postgres_sync | upsert_data | deadlock detected | RERUN | approved | fixed on rerun | 88.0 | success |
+
+---
+
+## 🧾 Example metadata (JSONB)
+
+```json
+{
+  "try_number": 2,
+  "execution_date": "2026-03-26T10:00:00",
+  "log_url": "http://airflow/log"
+}
+```
+
+---
+
+## 🧠 Example ai_review (JSON stored as text)
+
+```json
+{
+  "summary": "Transient network issue during shuffle",
+  "reasoning": "Similar past errors resolved with retry",
+  "confidence": 92
+}
+```
+
+---
+
+## 🔁 How they connect
+
+```text
+pipeline_signals (runtime failures)
+        ↓
+AI Decision + Rerun
+        ↓
+Successful rerun (fixed on rerun)
+        ↓
+Learn → YAML → Embeddings
+        ↓
+error_kb (knowledge store)
+```
 
 
 

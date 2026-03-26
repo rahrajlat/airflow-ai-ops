@@ -172,6 +172,12 @@ The Streamlit dashboard acts as the **central control plane** for monitoring, de
 
 It provides real-time visibility into pipeline failures and enables both **AI-driven** and **human-assisted** resolution workflows.
 
+## 🎥 Live Demo
+
+<div align="center">
+  <img src="assets/demo.gif" width="800" style="border-radius:12px; border:1px solid #333;">
+</div>
+
 ---
 
 ### 📊 Key Features

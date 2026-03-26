@@ -34,7 +34,7 @@ Airflow AI Ops is an intelligent platform that automatically detects, analyzes, 
 
 ## Architecture
 
-![Architecture](assets/Arch.png)
+![Architecture](assets/arch.png)
 
 ### System Flow
 

@@ -89,7 +89,7 @@ flowchart LR
 
 ---
 
-### 💡 Key Idea
+### 💡 Key Idea 
 
 The system combines **human knowledge + real-world outcomes**:
 

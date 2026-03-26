@@ -166,6 +166,68 @@ curl http://localhost:11434/api/embed -d '{
 }'
 ```
 
+## 🧑‍💻 Streamlit Dashboard (Control Center) (/frontend/frontend_streamlit)
+
+The Streamlit dashboard acts as the **central control plane** for monitoring, decision-making, and recovery operations.
+
+It provides real-time visibility into pipeline failures and enables both **AI-driven** and **human-assisted** resolution workflows.
+
+---
+
+### 📊 Key Features
+
+#### 🔍 Failure Monitoring
+- Displays all pipeline failures in real time  
+- Shows DAG, task, error message, and execution context  
+- Tracks retry attempts and current status  
+
+---
+
+#### 🧠 AI Insights
+- Displays AI-generated summaries of failures  
+- Shows recommended action (`RERUN` / `NO_RERUN`)  
+- Highlights **confidence score** with visual indicators  
+
+---
+
+#### ⚖️ Decision Interface
+- Approve or reject AI decisions  
+- Override AI when needed  
+- Seamless transition between **automation and manual control**  
+
+---
+
+#### 🔁 Rerun Management
+- Trigger reruns directly from the UI  
+- Monitor rerun outcomes (success / failure)  
+- Retry failed reruns or escalate to manual review  
+
+---
+
+#### 📈 System Overview
+- Success vs failure rates  
+- Peak vs low load hours  
+- Top failing DAGs  
+- Operational health indicators  
+
+---
+
+### 🎯 Design Philosophy
+
+The dashboard is designed to:
+
+- Reduce operational toil  
+- Provide explainability for AI decisions  
+- Enable fast incident response  
+- Balance automation with human oversight  
+
+---
+
+### 🔄 Role in the System
+
+```text
+Streamlit = Human + AI Interface Layer
+
 
 ## ⭐️ Show your support
 

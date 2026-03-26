@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: ankane/pgvector:latest
+    container_name: my_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: flow_feed_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./Postgress_Docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:

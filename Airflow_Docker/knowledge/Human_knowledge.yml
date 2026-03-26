@@ -1,0 +1,291 @@
+spark:
+  - error: "FetchFailedException: Failed to fetch shuffle blocks"
+    root_cause: "Shuffle fetch failed due to executor or network issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "ExecutorLostFailure: Executor exited unexpectedly"
+    root_cause: "Executor crashed or node lost"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "OutOfMemoryError: Java heap space"
+    root_cause: "Insufficient executor memory"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Task not serializable"
+    root_cause: "Non-serializable object in closure"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "GC overhead limit exceeded"
+    root_cause: "Excessive garbage collection due to memory pressure"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Connection reset by peer during shuffle"
+    root_cause: "Transient network issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Timeout waiting for executor heartbeat"
+    root_cause: "Executor lost connectivity"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "FileNotFoundException: Path does not exist"
+    root_cause: "Missing input data"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Stage cancelled due to fetch failure"
+    root_cause: "Shuffle fetch failure"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Disk spilled data exceeds limit"
+    root_cause: "Insufficient disk"
+    decision: "NO_RERUN"
+    source: "human"
+
+
+dbt:
+  - error: "Database Error: column not found"
+    root_cause: "Incorrect column reference"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Relation does not exist"
+    root_cause: "Missing table or dependency"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Compilation Error: model not found"
+    root_cause: "Missing dbt model"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Connection timed out to database"
+    root_cause: "Transient DB connectivity issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Deadlock detected"
+    root_cause: "Concurrent transaction conflict"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Permission denied for schema"
+    root_cause: "Access control issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Query canceled due to statement timeout"
+    root_cause: "Long-running query"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Duplicate column name"
+    root_cause: "SQL logic error"
+    decision: "NO_RERUN"
+    source: "human"
+
+
+s3:
+  - error: "ConnectTimeoutError: S3 connection timed out"
+    root_cause: "Network timeout"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "503 Slow Down"
+    root_cause: "S3 rate limiting"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "NoSuchKey"
+    root_cause: "Object does not exist"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "AccessDenied"
+    root_cause: "IAM permission issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "RequestTimeout"
+    root_cause: "Transient network issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "SignatureDoesNotMatch"
+    root_cause: "Auth signing issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "BucketNotFound"
+    root_cause: "Incorrect bucket name"
+    decision: "NO_RERUN"
+    source: "human"
+
+
+redshift:
+  - error: "Query (12345) cancelled on user's request"
+    root_cause: "Manual cancel or timeout"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Exceeded WLM queue memory limits"
+    root_cause: "Insufficient memory allocation"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Relation does not exist"
+    root_cause: "Missing table"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Permission denied for relation"
+    root_cause: "Access issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Serialization failure"
+    root_cause: "Concurrent transaction conflict"
+    decision: "RERUN"
+    source: "human"
+
+
+snowflake:
+  - error: "SQL compilation error: object does not exist"
+    root_cause: "Missing object"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Statement reached timeout limit"
+    root_cause: "Long-running query"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Network error: connection reset"
+    root_cause: "Transient network issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Insufficient privileges"
+    root_cause: "Permission issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Warehouse is not available"
+    root_cause: "Compute unavailable"
+    decision: "RERUN"
+    source: "human"
+
+
+postgres:
+  - error: "could not connect to server: Connection refused"
+    root_cause: "DB unavailable"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "duplicate key value violates unique constraint"
+    root_cause: "Data integrity issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "relation does not exist"
+    root_cause: "Missing table"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "deadlock detected"
+    root_cause: "Concurrent transaction conflict"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "canceling statement due to statement timeout"
+    root_cause: "Query timeout"
+    decision: "RERUN"
+    source: "human"
+
+
+network:
+  - error: "Connection refused"
+    root_cause: "Service unavailable"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Connection timed out"
+    root_cause: "Network latency"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "DNS resolution failed"
+    root_cause: "DNS issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "Host unreachable"
+    root_cause: "Network routing issue"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "SSL handshake failed"
+    root_cause: "Certificate or config issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+
+iam:
+  - error: "AccessDenied: User is not authorized"
+    root_cause: "Permission issue"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "InvalidAccessKeyId"
+    root_cause: "Invalid credentials"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "ExpiredToken"
+    root_cause: "Temporary credentials expired"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "SignatureDoesNotMatch"
+    root_cause: "Auth mismatch"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "User is not authorized to perform action"
+    root_cause: "IAM policy restriction"
+    decision: "NO_RERUN"
+    source: "human"
+
+
+airflow:
+  - error: "Task timed out"
+    root_cause: "Execution timeout"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "ImportError: module not found"
+    root_cause: "Dependency missing"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Broken DAG: invalid syntax"
+    root_cause: "Code error"
+    decision: "NO_RERUN"
+    source: "human"
+
+  - error: "Task failed due to upstream failure"
+    root_cause: "Dependency failure"
+    decision: "RERUN"
+    source: "human"
+
+  - error: "HTTP 500 from external API"
+    root_cause: "External system failure"
+    decision: "RERUN"
+    source: "human"

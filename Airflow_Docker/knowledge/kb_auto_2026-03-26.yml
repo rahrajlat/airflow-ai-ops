@@ -1,0 +1,7 @@
+airflow:
+- error: S3 connection timed out
+  root_cause: S3 connection timed out, following previous similar failures and rules
+  decision: RERUN
+  source: auto
+  support: 1
+  success_rate: 1.0

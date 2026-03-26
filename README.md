@@ -228,7 +228,7 @@ The dashboard is designed to:
 ```text
 Streamlit = Human + AI Interface Layer
 
-
+```
 ## ⭐️ Show your support
 
 If you like this project, please leave a ⭐ on GitHub — it really helps!

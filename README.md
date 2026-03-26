@@ -148,7 +148,7 @@ http://host.docker.internal:11434
 
 ```bash
 make up
-make ui
+cd frontent; streamlit run frontend_streamlit.py
 ```
 
 ---

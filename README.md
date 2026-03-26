@@ -47,6 +47,9 @@ Airflow AI Ops is an intelligent platform that automatically detects, analyzes, 
 - **Recovery Layer**: Clears tasks and tracks rerun outcomes via Airflow API
 - **Learning Loop**: Generates YAML knowledge base from successful recoveries
 
+![Architecture](assets/flow_diagram.png)
+
+
 ```mermaid
 graph LR
     A["Failure<br/>via Callback"] --> B["AI Analysis<br/>Embeddings + LLM"]

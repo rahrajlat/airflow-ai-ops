@@ -30,6 +30,8 @@ Airflow AI Ops is an intelligent platform that automatically detects, analyzes, 
 | Integration | [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html) | Programmatic task reruns |
 | Infrastructure | [Docker](https://www.docker.com/) | Containerized runtime |
 
+
+
 ## Architecture
 
 ![Architecture](assets/Arch.png)
@@ -56,6 +58,58 @@ graph LR
     F --> G["Learn & Improve<br/>Update Knowledge Base"]
     G -.->|Feedback Loop| B
 ```
+
+## 🔁 Learning & Knowledge Store
+
+The system continuously improves using a hybrid approach:
+
+- 📘 Human-curated knowledge → users can update YAML files  
+- 🤖 Auto-learning → learns from successful reruns  
+
+---
+
+```mermaid
+flowchart LR
+
+    A[Failure] --> B[AI Decision]
+    B --> C{Rerun}
+
+    C -->|Success| D[Learn from Logs]
+    C -->|Fail| X[Ignore]
+
+    D --> E[Generate YAML]
+
+    F[User Updates YAML] --> E
+
+    E --> G[Create Embeddings]
+    G --> H[Vector DB error_kb]
+
+    H --> I[Future Failures]
+```
+
+---
+
+### 💡 Key Idea
+
+The system combines **human knowledge + real-world outcomes**:
+
+- Users can directly update YAML rules  
+- The system automatically learns from successful reruns  
+- Knowledge is converted into embeddings for future decisions  
+
+---
+
+### 🚀 Result
+
+- Smarter AI decisions over time  
+- Reduced manual intervention  
+- Transparent and controllable learning system  
+
+
+
+
+
+
 
 ## ⚙️ Prerequisites
 
